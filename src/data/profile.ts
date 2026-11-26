@@ -15,7 +15,7 @@ export const profile = {
   // Place your photo at public/images/profile.jpg
   photo: '/images/profile.jpg',
   // Transparent cutout used on the hero ID card: public/images/id-photo.webp
-  idPhoto: '/images/id-photo.webp',
+  idPhoto: '/images/id-photo.webp?v=3',
   // Photo used in the About section: public/images/about.jpg
   aboutPhoto: '/images/about.jpg',
 

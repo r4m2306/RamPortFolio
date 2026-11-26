@@ -179,7 +179,16 @@ export function useLanyard(opts: Options) {
       const a = Math.atan2(q.x - c.x, q.y - c.y)
       card.style.transform = `translate3d(${c.x - cardW / 2}px, ${c.y}px, 0) rotate(${-a}rad)`
       const flip = flipRef.current
-      if (flip) flip.style.transform = `rotateY(${ry}rad)`
+      if (flip) {
+        flip.style.transform = `rotateY(${ry}rad)`
+        // show only the face that points at the viewer (does not rely on backface-visibility,
+        // which some browsers/GPUs ignore on promoted layers)
+        const frontUp = Math.cos(ry) >= 0
+        const front = flip.children[0] as HTMLElement | undefined
+        const back = flip.children[1] as HTMLElement | undefined
+        if (front) front.style.visibility = frontUp ? 'visible' : 'hidden'
+        if (back) back.style.visibility = frontUp ? 'hidden' : 'visible'
+      }
       const shine = shineRef.current
       if (shine) shine.style.backgroundPosition = `${50 + Math.sin(ry) * 60 + a * 40}% 0`
 
