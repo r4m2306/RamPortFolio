@@ -15,9 +15,17 @@ export const navItems: NavItem[] = [
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
   ...(experience.length > 0 ? [{ id: 'experience', label: 'Experience' }] : []),
-  { id: 'education', label: 'Education' },
   ...(certifications.length > 0
     ? [{ id: 'certifications', label: 'Certifications' }]
     : []),
   { id: 'resume', label: 'Resume' },
+]
+
+// The floating pill menu in the navbar (tablet and desktop).
+// "Portfolio" scrolls to the Projects section. The phone menu lists every section.
+export const pillItems: NavItem[] = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Portfolio' },
+  { id: 'contact', label: 'Contact' },
 ]

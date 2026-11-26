@@ -54,3 +54,23 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Intro screen + falling ID card */
+@keyframes intro-icon-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+.intro-icon { opacity: 0; animation: intro-icon-in 0.5s ease-out forwards; }
+
+@keyframes id-drop {
+  from { transform: translate3d(0, -105vh, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+.id-drop {
+  animation: id-drop 3.2s cubic-bezier(0.45, 0.05, 0.15, 1) 0.2s both;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-icon { animation: none; opacity: 1; }
+  .id-drop { animation: none; }
+}

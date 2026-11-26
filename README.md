@@ -1,4 +1,4 @@
-# ram.dev: Personal Portfolio
+# rams.ninja: Personal Portfolio
 
 Portfolio website for **Rhammzthienne R. Tindoy**, Full Stack Developer and 3rd year BSIT student at Holy Cross of Davao College.
 
@@ -29,7 +29,7 @@ Almost everything is edited in the `src/data/` folder. Look for `EDIT ME` commen
 
 | What you want to change | File |
 | --- | --- |
-| Name, bio, emails, Discord, GitHub, Facebook, graduation year, Formspree ID | `src/data/profile.ts` |
+| Name, bio, emails, Discord, GitHub, Facebook, Formspree ID | `src/data/profile.ts` |
 | Projects (title, description, tech tags, role, image, GitHub, live demo, featured) | `src/data/projects.ts` |
 | Skills (add Git/GitHub, Node.js, and more) | `src/data/skills.ts` |
 | Certifications (section appears when you add the first item) | `src/data/certifications.ts` |
@@ -41,7 +41,8 @@ Almost everything is edited in the `src/data/` folder. Look for `EDIT ME` commen
 
 Put these files in the `public/` folder using the exact names:
 
-- `public/images/profile.jpg`: your profile photo (square, at least 400 x 400 px)
+- `public/images/profile.jpg`: your photo for the first page (square, at least 400 x 400 px)
+- `public/images/about.jpg`: your photo for the About Me section (portrait, 4:5, for example 960 x 1200 px)
 - `public/images/project-1.png`: screenshot for Physical Health Monitoring
 - `public/images/project-2.png`: screenshot for Multi-Page Student Directory
 - `public/images/og-image.png`: preview image for social sharing (1200 x 630 px)
@@ -102,17 +103,33 @@ git push -u origin main
 2. Click **Add new site > Import an existing project** and pick your repository.
 3. Build command: `npm run build`. Publish directory: `dist`. Click **Deploy**.
 
-## 4. Connect the ram.dev domain
+## 4. Your domain (rams.ninja) and automatic updates
 
-1. Buy or own the `ram.dev` domain from a registrar.
-2. **Vercel:** open your project, go to **Settings > Domains**, add `ram.dev`.
-   **Netlify:** open your site, go to **Domain management > Add a domain**, add `ram.dev`.
-3. Copy the DNS records shown by the host and add them at your registrar's DNS settings. Typically:
-   - an **A record** for `@` pointing to the IP address your host gives you, and
-   - a **CNAME record** for `www` pointing to your host's address.
-4. Wait for DNS to update (from a few minutes up to 48 hours). HTTPS is enabled automatically.
+The live site is at https://www.rams.ninja/.
 
-Note: `.dev` domains require HTTPS. Vercel and Netlify handle this for you.
+**Automatic updates.** Vercel and Netlify both rebuild and publish your site every time you push to the `main` branch of your GitHub repository, so you never upload files by hand. Your update routine is:
+
+```bash
+git add .
+git commit -m "Describe what you changed"
+git push
+```
+
+Wait about a minute, then refresh https://www.rams.ninja/ (press Ctrl + F5 if you still see the old version).
+
+**Check it is connected to your repository.** On the host's dashboard:
+
+- **Vercel:** open the project, then **Settings > Git**. It should show `r4m2306/RamPortFolio` and the branch `main`.
+- **Netlify:** open the site, then **Site configuration > Build and deploy > Continuous deployment**. It should show the same repository and branch.
+
+If it is not connected, import the repository again (see section 3). Settings for both hosts: build command `npm run build`, output folder `dist`.
+
+**Domain settings.** In **Settings > Domains** (Vercel) or **Domain management** (Netlify), make sure both `rams.ninja` and `www.rams.ninja` are added, and pick one as the main address. The site's SEO tags use `https://www.rams.ninja/`, so make `www.rams.ninja` the main one and redirect `rams.ninja` to it.
+
+If the domain ever stops working, check the DNS records at your registrar against the ones the host shows:
+
+- an **A record** for `@` pointing to the IP address your host gives you, and
+- a **CNAME record** for `www` pointing to your host's address.
 
 ## Project structure
 
@@ -125,7 +142,7 @@ Ram_Portfolio/
     components/           Navbar, SectionTitle, ProjectCard, SkillBadge,
                           ContactForm, Footer, and more
       sections/           Hero, About, Skills, Projects, Experience,
-                          Education, Certifications, Resume, Contact
+                          Certifications, Resume, Contact
     data/                 profile, projects, skills, certifications, experience
     hooks/                theme, active section, scroll reveal
     types/                TypeScript types

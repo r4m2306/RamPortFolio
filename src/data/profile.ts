@@ -6,14 +6,28 @@ export const profile = {
   role: 'Full Stack Developer',
   pitch:
     'I build clean, useful web apps from the front end all the way to the database.',
-  domain: 'ram.dev',
+  domain: 'rams.ninja',
+  // Full address of the live site (used for links and SEO)
+  siteUrl: 'https://www.rams.ninja/',
   school: 'Holy Cross of Davao College',
   location: 'Davao City, Philippines',
 
   // Place your photo at public/images/profile.jpg
   photo: '/images/profile.jpg',
+  // Transparent cutout used on the hero ID card: public/images/id-photo.webp
+  idPhoto: '/images/id-photo.webp',
   // Photo used in the About section: public/images/about.jpg
   aboutPhoto: '/images/about.jpg',
+
+  // EDIT ME: the text on the home page (hero).
+  heroTitle: 'Welcome to',
+  heroTitleAccent: 'My Portfolio',
+  // The subtitle types out each of these in turn.
+  heroRoles: ['Game Developer', 'Full Stack Developer', 'Minecraft Add-On Developer'],
+  // The paragraph under the subtitle: bold lead sentence, then supporting words.
+  heroLead: 'I am a game developer. I implement what I imagine to play, from sketch to reality.',
+  heroSupport:
+    'Every game starts as a rough sketch and a spark of an idea. I design it, code it, test it, and polish it until it becomes something you can pick up and play. I build Minecraft Bedrock add-ons, and I bring the same problem-solving to clean, useful web apps, from the front end to the database.',
 
   // EDIT ME: keep the bio at 3 to 4 sentences.
   bio: [
@@ -33,8 +47,6 @@ export const profile = {
   // Education
   degree: 'Bachelor of Science in Information Technology',
   yearLevel: '3rd Year',
-  // EDIT ME: replace YEAR with your real graduation year.
-  expectedGraduation: 'Expected graduation: YEAR',
 
   // Resume: put your file at public/resume.pdf
   resumeUrl: '/resume.pdf',
