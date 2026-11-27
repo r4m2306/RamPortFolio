@@ -12,7 +12,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
+  { id: 'skills', label: 'Skill Stack' },
   { id: 'projects', label: 'Projects' },
   ...(experience.length > 0 ? [{ id: 'experience', label: 'Experience' }] : []),
   ...(certifications.length > 0
@@ -26,6 +26,7 @@ export const navItems: NavItem[] = [
 export const pillItems: NavItem[] = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skill Stack' },
   { id: 'projects', label: 'Portfolio' },
   { id: 'contact', label: 'Contact' },
 ]

@@ -15,15 +15,22 @@ export const profile = {
   // Place your photo at public/images/profile.jpg
   photo: '/images/profile.jpg',
   // Transparent cutout used on the hero ID card: public/images/id-photo.webp
-  idPhoto: '/images/id-photo.webp?v=3',
+  idPhoto: '/images/id-photo.webp?v=5',
   // Photo used in the About section: public/images/about.jpg
-  aboutPhoto: '/images/about.jpg',
+  aboutPhoto: '/images/about-cutout.webp?v=5',
+  // Graphite (hover) and pencil-sketch (click) versions of the same cut-out
+  aboutGraphite: '/images/about-graphite.webp?v=5',
+  aboutSketch: '/images/about-sketch.webp?v=5',
 
   // EDIT ME: the text on the home page (hero).
   heroTitle: 'Welcome to',
   heroTitleAccent: 'My Portfolio',
+  heroEyebrow: "Collection '26 · @rams",
+  heroCity: 'Boulevard 8000',
+  heroIntro:
+    'Building full-stack web applications, mobile apps, and human-centered UI/UX experiences as an IT student and software builder.',
   // The subtitle types out each of these in turn.
-  heroRoles: ['Game Developer', 'Full Stack Developer', 'Minecraft Add-On Developer'],
+  heroRoles: ['Fullstack Dev', 'Game Dev', 'BSIT Student'],
   // The paragraph under the subtitle: bold lead sentence, then supporting words.
   heroLead: 'I am a game developer. I implement what I imagine to play, from sketch to reality.',
   heroSupport:

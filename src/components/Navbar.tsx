@@ -6,7 +6,7 @@ import ThemeToggle from './ThemeToggle'
 
 interface NavbarProps {
   theme: 'light' | 'dark'
-  onToggleTheme: () => void
+  onToggleTheme: (origin?: { x: number; y: number }) => void
 }
 
 // Ids tracked for active highlighting (all sections + contact).

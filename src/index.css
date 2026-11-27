@@ -74,3 +74,143 @@
   .intro-icon { animation: none; opacity: 1; }
   .id-drop { animation: none; }
 }
+
+/* About portrait: drafting-sheet grid (white in light mode, dark in dark mode) */
+.portrait-grid {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.dark .portrait-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+}
+
+/* Photo card: sketch layer revealed through a feathered spotlight (vars set from JS) */
+.portrait-reveal {
+  -webkit-mask-image: radial-gradient(circle var(--r, 0px) at var(--mx, 50%) var(--my, 40%), #000 0%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(circle var(--r, 0px) at var(--mx, 50%) var(--my, 40%), #000 0%, #000 55%, transparent 100%);
+}
+
+/* Theme switch: circular reveal via the View Transitions API */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) { z-index: 9999; }
+::view-transition-old(root) { z-index: 1; }
+
+/* Fallback when View Transitions are unavailable */
+.theme-fallback,
+.theme-fallback *,
+.theme-fallback *::before,
+.theme-fallback *::after {
+  transition:
+    background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Binary background colours (read by BinaryBackground.tsx; rgb triples) */
+:root {
+  --glyph-rgb: 20 20 20;
+  --glyph-accent-1: 217 83 79;
+  --glyph-accent-2: 61 220 132;
+}
+.dark {
+  --glyph-rgb: 205 215 210;
+  --glyph-accent-1: 61 220 132;
+  --glyph-accent-2: 139 124 255;
+}
+
+/* Hero text colour tokens (switch with the theme class on <html>) */
+:root {
+  --bg: #ffffff;
+  --text-primary: #050505;
+  --text-secondary: #52504e;
+  --text-body: #54524f;
+  --text-muted: #62605e;
+}
+.dark {
+  --bg: #020617;
+  --text-primary: #ffffff;
+  --text-secondary: #757575;
+  --text-body: #777777;
+  --text-muted: #6c6c6c;
+}
+/* 300ms colour fade only when the View Transitions fallback is used */
+.theme-fallback .hero-text, .theme-fallback .hero-text * { transition: color 300ms; }
+
+/* Soft scrim behind the hero text so the glyph rain fades gently, no box edge */
+.hero-scrim { position: relative; isolation: isolate; }
+.hero-scrim::before {
+  content: '';
+  position: absolute;
+  inset: -3rem -4rem;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, var(--bg) 0%, transparent 70%);
+  opacity: 0.55;
+}
+
+@keyframes caret-blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+.caret-blink { animation: caret-blink 1s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) { .caret-blink { animation: none; } }
+
+/* Skill Stack marquee */
+.skill-marquee {
+  --ss-k: 1;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+@media (max-width: 640px) {
+  .skill-marquee { --ss-k: 0.8; }
+}
+.skill-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.skill-marquee.is-static .skill-track {
+  width: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 1.5rem;
+}
+.ss-item {
+  flex: none;
+  padding: 0.75rem calc(var(--ss-gap) * var(--ss-k) / 2);
+}
+.ss-icon {
+  display: grid;
+  place-items: center;
+  width: calc(var(--ss-size) * var(--ss-k));
+  height: calc(var(--ss-size) * var(--ss-k));
+  color: theme('colors.slate.500');
+  opacity: 0.65;
+  transition: transform 300ms ease, opacity 300ms ease, color 300ms ease;
+}
+.dark .ss-icon { color: theme('colors.slate.200'); }
+.ss-item:hover .ss-icon {
+  transform: scale(1.1);
+  opacity: 1;
+  color: theme('colors.accent.500');
+}
+.dark .ss-item:hover .ss-icon { color: theme('colors.accent.400'); }
+
+/* Staggered blur-in entrance */
+.ss-anim { opacity: 0; }
+.ss-anim.ss-in { animation: ss-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ss-d1.ss-in { animation-delay: 0.08s; }
+.ss-d2.ss-in { animation-delay: 0.16s; }
+.ss-d3.ss-in { animation-delay: 0.28s; }
+@keyframes ss-in {
+  from { opacity: 0; filter: blur(10px); transform: translateY(14px); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ss-anim { opacity: 1; }
+  .ss-anim.ss-in { animation: none; }
+}

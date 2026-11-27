@@ -31,6 +31,8 @@ export interface Skill {
   category: SkillCategory
   /** Icon image (import an .svg from src/assets/skill-icons). If omitted, the name is shown as text. */
   icon?: string
+  /** Optional one-colour version used by the Skill Stack marquee when the normal icon has no see-through parts */
+  monoIcon?: string
 }
 
 export interface Certification {
